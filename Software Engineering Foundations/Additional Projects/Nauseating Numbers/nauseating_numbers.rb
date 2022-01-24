@@ -1,7 +1,9 @@
-# App Academy Open - Software Engineering Foundations
-# Advanced Problem Set 1: 'Nauseating Numerals'
-# Problem descriptions and test cases provided by course
-# Solutions by Alex Boutilier
+# Nauseating Numbers - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/nauseating-numbers
+# Solutions by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 require('byebug')
 
 # ----Phase 1:----

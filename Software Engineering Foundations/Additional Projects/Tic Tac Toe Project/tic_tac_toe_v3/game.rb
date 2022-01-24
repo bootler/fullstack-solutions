@@ -1,3 +1,9 @@
+# Tic Tac Toe Project - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/tictactoe-project
+# game.rb by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 require_relative "./board.rb"
 require_relative "./human_player.rb"
 require_relative "./computer_player.rb"

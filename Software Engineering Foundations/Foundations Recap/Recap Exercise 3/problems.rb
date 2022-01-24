@@ -1,4 +1,9 @@
-# Problem descriptions and test cases provided by course.
+# Recap Exercise 3 - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/recap-exercise-3
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 
 # Problem 1:
 # Write a method no_dupes?(arr) that accepts an array as an arg 

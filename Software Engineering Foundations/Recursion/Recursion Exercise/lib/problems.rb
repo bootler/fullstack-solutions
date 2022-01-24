@@ -1,4 +1,11 @@
+# Recursion Exercise - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/recursion-exercise
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 require "byebug"
+
 # Write a method, pow(base, exponent), that takes in two numbers.
 # The method should calculate the base raised to the exponent power.
 # You can assume the exponent is always positive.

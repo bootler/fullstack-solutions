@@ -1,3 +1,10 @@
+# Algorithmic Strategies Exercise - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/algorithmic-strategies-exercise
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Write a method, is_sorted(arr), that accepts an array of numbers as an arg.
 # The method should return true if the elements are in increasing order, false otherwise.
 # Do not use the built-in Array#sort in your solution :)

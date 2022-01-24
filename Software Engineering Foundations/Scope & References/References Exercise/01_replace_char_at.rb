@@ -1,3 +1,10 @@
+# References Exercise - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/references-exercise
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Write a method, replace_char_at!(str, char, idx), that accepts a string, character, and an index as arguments. 
 # The method should mutate the str by replacing the given idx of the str with the char. The method
 # should return the str.

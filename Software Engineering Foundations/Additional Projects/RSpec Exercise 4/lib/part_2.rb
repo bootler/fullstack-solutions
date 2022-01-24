@@ -1,5 +1,9 @@
-# Alex Boutilier - RSpec Exercises 4
-# Verify RSpec installation with 'bundle install' then use 'bundle exec rspec'
+# RSpec Exercise 4 - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/rspec-exercise-4
+# Solutions by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 require('byebug')
 
 def proper_factors(num)

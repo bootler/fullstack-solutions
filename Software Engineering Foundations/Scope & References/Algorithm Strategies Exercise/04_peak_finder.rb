@@ -1,3 +1,10 @@
+# Algorithmic Strategies Exercise - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/algorithmic-strategies-exercise
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Write a method, peak_finder(arr), that accepts an array of numbers as an arg.
 # The method should return an array containing all of "peaks" of the array.
 # An element is considered a "peak" if it is greater than both it's left and right neighbor.

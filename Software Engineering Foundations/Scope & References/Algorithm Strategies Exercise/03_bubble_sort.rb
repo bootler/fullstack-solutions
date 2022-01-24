@@ -1,3 +1,10 @@
+# Algorithmic Strategies Exercise - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/algorithmic-strategies-exercise
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Reimplement the bubble sort outlined in the preceding lecture.
 # The bubble_sort method should accept an array of numbers and arrange the elements in increasing order.
 # The method should return the array.

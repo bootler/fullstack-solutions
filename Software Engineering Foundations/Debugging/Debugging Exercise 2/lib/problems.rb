@@ -1,3 +1,10 @@
+# Debugging Exercise 2 - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/debugging-exercise-2
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Run `bundle exec rspec` and satisy the specs.
 # You should implement your methods in this file.
 # Feel free to use the debugger when you get stuck.

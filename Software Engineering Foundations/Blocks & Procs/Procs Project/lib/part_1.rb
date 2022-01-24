@@ -1,4 +1,9 @@
-
+# Procs Project - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/procs-project
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 def my_map(arr, &prc)
     newArr = []
     arr.each { |el| newArr << prc.call(el) }

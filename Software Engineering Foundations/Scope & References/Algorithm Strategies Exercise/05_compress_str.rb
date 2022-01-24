@@ -1,3 +1,10 @@
+# Algorithmic Strategies Exercise - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/algorithmic-strategies-exercise
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Write a method, compress_str(str), that accepts a string as an arg.
 # The method should return a new str where streaks of consecutive characters are compressed.
 # For example "aaabbc" is compressed to "3a2bc".

@@ -1,7 +1,9 @@
-# App Academy Open - Software Engineering Foundations
-# Advanced Problem Set 2: 'Perilous Procs'
-# Problem descriptions and test cases provided by course
-# Solutions by Alex Boutilier
+# Perilous Procs - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/perilous-procs
+# Solutions by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 require('byebug')
 
 # ----Phase 1:----

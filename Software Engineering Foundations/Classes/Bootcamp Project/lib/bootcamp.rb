@@ -1,3 +1,9 @@
+# Bootcamp Project - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/bootcamp-project
+# bootcamp.rb by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 class Bootcamp
     def initialize(name,slogan,student_capacity)
         @name = name

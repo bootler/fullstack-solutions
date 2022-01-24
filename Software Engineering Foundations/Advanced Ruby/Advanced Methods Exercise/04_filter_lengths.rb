@@ -1,3 +1,10 @@
+# Advanced Methods Exercise - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/advanced-methods-exercise
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Write a method, filter_lengths(strings, length), that accepts an array of strings
 # and a length as args. The method should return an array containing the strings
 # that have at least the given length. The length argument should be optional; if no length

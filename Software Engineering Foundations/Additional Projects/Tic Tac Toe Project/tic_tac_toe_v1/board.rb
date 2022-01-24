@@ -1,3 +1,9 @@
+# Tic Tac Toe Project - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/tictactoe-project
+# board.rb by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 class Board
     def initialize
         @grid = Array.new(3) { Array. new(3, '_') }

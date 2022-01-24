@@ -1,3 +1,10 @@
+# Monkey Patching Project - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/monkey-patching-project
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Monkey-Patch Ruby's existing Array class to add your own custom methods
 class Array
   

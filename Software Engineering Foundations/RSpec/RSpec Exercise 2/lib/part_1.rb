@@ -1,3 +1,9 @@
+# RSpec Exercise 2 - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/rspec-exercise-2
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 def partition(arr,num)
     return [arr.select { |ele| ele < num },arr.select { |ele| ele >= num }]
 end

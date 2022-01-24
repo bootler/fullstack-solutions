@@ -1,3 +1,10 @@
+# Recap Exercise 1 - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/recap-exercise-1
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Write a method, all_vowel_pairs, that takes in an array of words and returns all pairs of words
 # that contain every vowel. Vowels are the letters a, e, i, o, u. A pair should have its two words
 # in the same order as the original array. 

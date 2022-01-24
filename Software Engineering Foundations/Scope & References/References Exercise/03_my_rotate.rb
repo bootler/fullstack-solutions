@@ -1,3 +1,10 @@
+# References Exercise - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/references-exercise
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Write a method, my_rotate!(array, amt), that accepts an array and a number as args.
 # The method should mutate the array by rotating the elements 'amt' number of times. 
 # When given a positive 'amt', a single rotation will rotate left, causing the first element to move to the last index

@@ -1,3 +1,10 @@
+# Debugging Exercise 1 - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/debugging-exercise-1
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Debug this code to pass rspec! There is 1 mistake to fix.
 
 # Write a method, fuzz_buzz, that accepts a number as an arg. 

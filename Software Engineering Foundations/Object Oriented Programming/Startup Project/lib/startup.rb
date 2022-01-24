@@ -1,8 +1,13 @@
+# Startup Project - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/startup-project
+# startup.rb by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 require "employee"
 require "byebug"
 
 class Startup
-
     attr_reader :name, :funding, :salaries, :employees
 
     def initialize(name,funding,salaries)
@@ -69,5 +74,4 @@ class Startup
         @employees.push(*competitor.employees)
         competitor.close
     end
-
 end

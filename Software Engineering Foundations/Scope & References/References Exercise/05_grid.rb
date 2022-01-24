@@ -1,3 +1,10 @@
+# References Exercise - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/references-exercise
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Write a method, grid(n, m), that accepts two numbers as args.
 # The method should return a 2D array with n rows and m columns (this means that there are n subarrays, each of length m).
 

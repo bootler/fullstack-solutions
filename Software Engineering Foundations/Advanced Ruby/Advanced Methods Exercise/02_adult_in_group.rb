@@ -1,3 +1,10 @@
+# Advanced Methods Exercise - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/advanced-methods-exercise
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Write a method, adult_in_group?(people), that accepts an array containing people.
 # The method should return true if there is at least 1 person with an age of 18 or greater.
 # The method should return false otherwise.

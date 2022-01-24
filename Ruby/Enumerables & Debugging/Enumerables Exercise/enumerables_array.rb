@@ -2,6 +2,9 @@
 # https://open.appacademy.io/learn/full-stack-online/ruby/enumerables
 # NB: This file specifically implements the methods under 'Review' section.
 # Solutions by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 
 # Problem 1:
 # Write a method `factors(num)` that returns an array containing all the

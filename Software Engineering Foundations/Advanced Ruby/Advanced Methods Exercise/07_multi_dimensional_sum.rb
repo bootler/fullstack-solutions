@@ -1,3 +1,10 @@
+# Advanced Methods Exercise - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/advanced-methods-exercise
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Write a method, multi_dimensional_sum(array), that accepts a multidimensional array as an arg 
 # and returns the sum of all numbers in the array.
 

@@ -1,3 +1,10 @@
+# Advanced Methods Exercise - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/advanced-methods-exercise
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 # Write a method, coprime?(num_1, num_2), that accepts two numbers as args.
 # The method should return true if the only common divisor between the two numbers is 1.
 # The method should return false otherwise. For example coprime?(25, 12) is true because

@@ -1,3 +1,10 @@
+# Recap Exercise 2 - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/recap-exercise-2
+# Solution by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
+
 require "byebug"
 
 # Write a method, least_common_multiple, that takes in two numbers and returns the smallest number that is a mutiple

@@ -1,8 +1,13 @@
+# Hotel Project - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/hotel-project
+# hotel.rb by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 require_relative "room"
 require "byebug"
 
 class Hotel
-  
     def initialize(name,hash)
         @name = name
         @rooms = {} 

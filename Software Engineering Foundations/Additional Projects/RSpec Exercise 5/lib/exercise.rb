@@ -1,8 +1,11 @@
-# Alex Boutilier - RSpec Exercises 5
-# Verify RSpec installation with 'bundle install' then use 'bundle exec rspec'
+# RSpec Exercise 5 - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/rspec-exercise-5
+# Solutions by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 require('byebug')
 
-# Doing this one at 5 in the morning, probably a better way to do it, should revisit
 def zip(*arrs)
     arg_len = arrs.length           # <= how many subarrays were in the argument
     arr_len = arrs[0].length        # <= length of each subarray (they are by spec all the same size)

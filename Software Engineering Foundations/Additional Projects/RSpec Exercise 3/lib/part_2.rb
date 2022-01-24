@@ -1,5 +1,9 @@
-# Alex Boutilier - RSpec Exercises 3
-# Use 'bundle install' once, then 'bundle exec rspec' to run and test
+# RSpec Exercise 3 - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/rspec-exercise-3
+# Solutions by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 require('byebug')
 
 def element_count(arr)

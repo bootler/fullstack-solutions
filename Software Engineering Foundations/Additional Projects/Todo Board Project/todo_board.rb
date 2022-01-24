@@ -1,3 +1,9 @@
+# Todo Board Project - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/todoboard-project
+# todo_board.rb by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 require_relative './list.rb'
 
 class TodoBoard

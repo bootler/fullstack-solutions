@@ -1,5 +1,10 @@
+# Dog Project - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/dog-project
+# dog.rb by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 class Dog
-    
     def initialize(name, breed, age, bark, favorite_foods)
         @name = name
         @breed = breed
@@ -35,6 +40,5 @@ class Dog
 
     def favorite_food?(food_item)
         favorite_foods.any? { |ele| ele.upcase == food_item.upcase }
-    end
-    
+    end  
 end
