@@ -8,31 +8,21 @@ require_relative 'point'
 
 class Maze
     DIRECTIONS = [[1,1], [1,0], [0,1], [-1,0], [0, -1], [-1, -1]]
-    attr_reader :maze, :map
 
     def initialize
         @maze = read_maze("./static/maze1.txt")
         @map = create_map(@maze)
-        @bounds = get_bounds
     end
 
     def print_maze
-        # cur_x = 0
-        # @map.each do |point|
-        #     if point.x > cur_x
-        #         cur_x = point.x
-        #         puts
-        #     end
-        #     point.print
-        # end
         @maze.each { |line| puts line.join }
         true
     end
 
     def read_maze(filename)
-        grid = []
-        File.foreach(filename) { |line| grid << line.chomp.split("") }
-        grid
+        maze = []
+        File.foreach(filename) { |line| maze << line.chomp.split("") }
+        maze
     end
 
     def create_map(maze)
@@ -55,32 +45,17 @@ class Maze
         @map.select { |point| point.x == x && point.y == y }[0]
     end
 
-    def in_bounds?(point)
-        x, y = *@bounds
-        point.x >= 0 && point.x <= x && point.y >= 0 && point.y <= y
-    end 
-
     def is_wall?(point)
         point.val == '*'
     end
 
-    def is_path?(point)
-        point.val == 'X'
-    end
-
-    def get_bounds
-        x = @maze.max { |row| row.length }.length - 1
-        y = @maze.length - 1
-        [x, y]
-    end
-    
     def get_neighbours(point)
         nbrs = []
         x, y = point.x, point.y
         DIRECTIONS.each do |dir|
             dx, dy = *dir
             nbr = find_point(x + dx, y + dy)
-            if nbr && !is_wall?(nbr) && !is_path?(nbr)
+            if nbr && !is_wall?(nbr)
                 nbrs << nbr
             end
         end
@@ -89,7 +64,7 @@ class Maze
 
     def update(point)
         x, y, val = *point.to_a
-        maze[y][x] = val
+        @maze[y][x] = val
     end
 end
     

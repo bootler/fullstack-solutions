@@ -90,8 +90,7 @@ class MazeSolver
     def score_h(point)
         x = (@end.x - point.x).abs
         y = (@end.y - point.y).abs
-        point.h = (x + y) * 10
-        point.h
+        (x + y) * 10
     end
 
     def test
