@@ -8,51 +8,51 @@ require_relative 'point'
 
 class Maze
     DIRECTIONS = [[1,1], [1,0], [0,1], [-1,0], [0, -1], [-1, -1]]
-    attr_reader :maze, :grid
+    attr_reader :maze, :map
 
     def initialize
-        @grid = read_grid("./static/maze1.txt")
-        @maze = create_maze(@grid)
+        @maze = read_maze("./static/maze1.txt")
+        @map = create_map(@maze)
         @bounds = get_bounds
     end
 
     def print_maze
         # cur_x = 0
-        # @maze.each do |point|
+        # @map.each do |point|
         #     if point.x > cur_x
         #         cur_x = point.x
         #         puts
         #     end
         #     point.print
         # end
-        @grid.each { |line| puts line.join }
+        @maze.each { |line| puts line.join }
         true
     end
 
-    def read_grid(filename)
+    def read_maze(filename)
         grid = []
         File.foreach(filename) { |line| grid << line.chomp.split("") }
         grid
     end
 
-    def create_maze(grid)
-        maze = Set.new
-        grid.each_index do |y|
-            grid[y].each_index { |x| maze << Point.new(x, y, grid[y][x]) }
+    def create_map(maze)
+        map = Set.new
+        maze.each_index do |y|
+            maze[y].each_index { |x| map << Point.new(x, y, maze[y][x]) }
         end
-        maze
+        map
     end
 
     def find_start
-        @maze.select { |point| point.val == 'S' }[0]
+        @map.select { |point| point.val == 'S' }[0]
     end
 
     def find_end
-        @maze.select { |point| point.val == 'E' }[0]
+        @map.select { |point| point.val == 'E' }[0]
     end
 
     def find_point(x,y)
-        @maze.select { |point| point.x == x && point.y == y }[0]
+        @map.select { |point| point.x == x && point.y == y }[0]
     end
 
     def in_bounds?(point)
@@ -69,8 +69,8 @@ class Maze
     end
 
     def get_bounds
-        x = @grid.max { |row| row.length }.length - 1
-        y = @grid.length - 1
+        x = @maze.max { |row| row.length }.length - 1
+        y = @maze.length - 1
         [x, y]
     end
     
@@ -85,6 +85,11 @@ class Maze
             end
         end
         nbrs
+    end
+
+    def update(point)
+        x, y, val = *point.to_a
+        maze[y][x] = val
     end
 end
     
