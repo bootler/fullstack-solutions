@@ -5,12 +5,13 @@
 # Part of 'bootler/fullstack-solutions' repository
 # https://github.com/bootler/fullstack-solutions
 require_relative 'point'
+require 'set'
 
 class Maze
     DIRECTIONS = [[1,1], [1,0], [0,1], [-1,0], [0, -1], [-1, -1]]
 
-    def initialize
-        @maze = read_maze("./static/maze1.txt")
+    def initialize(filename)
+        @maze = read_maze(filename)
         @map = create_map(@maze)
     end
 

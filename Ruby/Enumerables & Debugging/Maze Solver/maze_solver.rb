@@ -9,8 +9,8 @@ require_relative 'maze'
 class MazeSolver
     attr_reader :maze
 
-    def initialize
-        @maze = Maze.new
+    def initialize(filename)
+        @maze = Maze.new(filename)
         start = @maze.find_start
         @open_list = [[start, start]] #[point, parent]
         @closed_list = Set[]
@@ -25,8 +25,12 @@ class MazeSolver
         path
     end
 
-    def generate_path
-        until @open_list.length == 0 || @closed_list.member?(@end)
+    def found_path?
+        in_closed_list?(@end)
+    end
+
+    def solve
+        until @open_list.length == 0 || found_path?
             @open_list.sort_by { |node| node[0].f }
             current_node = @open_list.shift
             @closed_list << current_node
@@ -92,17 +96,40 @@ class MazeSolver
         y = (@end.y - point.y).abs
         (x + y) * 10
     end
+    
+    def show_maze
+        @maze.print_maze
+    end
 
-    def test
-        generate_path
-        end_node = in_closed_list?(@end)
-        path = compile_path(end_node)
+    def display_results
+        if !found_path?
+            puts "No path exists through this maze."
+            return
+        end
+        puts "Path found, updating maze..."
+        path = compile_path(found_path?)
         path.each do |point|
             point.val = 'X' unless point.val == 'E' || point.val == 'S'
             @maze.update(point)
         end
-        @maze.print_maze
+        show_maze
     end
 end
+
+if __FILE__ == $PROGRAM_NAME
+    filename = ARGV[0] || './static/maze1.txt'
+    begin
+        solver = MazeSolver.new(filename)
+        puts "Accepted maze file: #{filename}"
+        solver.show_maze
+        puts "Solving..."
+        solver.solve
+        solver.display_results
+        puts "Solution attempt completed."
+    rescue
+        puts "fatal: File not found: #{filename}, exiting..."
+    end
+end
+
 
 
