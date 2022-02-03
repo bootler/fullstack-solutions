@@ -5,12 +5,13 @@
 # Part of 'bootler/fullstack-solutions' repository
 # https://github.com/bootler/fullstack-solutions
 class Point
-    attr_accessor :x, :y, :val, :f, :g
+    attr_accessor :x, :y, :val, :parent, :f, :g
 
     def initialize(x, y, val)
         @x = x
         @y = y
         @val = val
+        @parent = nil
         @f = 0
         @g = 0
     end

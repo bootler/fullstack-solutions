@@ -12,52 +12,54 @@ class MazeSolver
     def initialize
         @maze = Maze.new
         start = @maze.find_start
-        @open_list = [[start, start]] #[point, parent]
-        @closed_list = Set[]
         @end = @maze.find_end
+        @open_list = [start]
+        @closed_list = Set[]
     end
 
-    def compile_path(node)
-        point, parent = *node
-        return [point] if parent == point
-        path = compile_path(in_closed_list?(parent))
+    def compile_path(point=@end)
+        return [] if point == nil
+        path = compile_path(point.parent)
         path << point
         path
     end
 
-    def generate_path
-        until @open_list.length == 0 || @closed_list.member?(@end)
-            @open_list.sort_by { |node| node[0].f }
+    def generate_path_data
+        until @open_list.length == 0 || in_closed_list?(@end)
+            @open_list.sort_by { |node| node.f }
             current_node = @open_list.shift
             @closed_list << current_node
-            current_point = current_node[0]
             
-            @maze.get_neighbours(current_point).each do |nbr|
+            @maze.get_neighbours(current_node).each do |nbr|
                 next if in_closed_list?(nbr)
                 node_in_list = in_open_list?(nbr)
-                node = [nbr, current_point]
                 if node_in_list
-                    node_in_list = compare_g(node_in_list, node)
+                    parent = node_in_list.parent
+                    g = node_in_list.g
+                    node_in_list.parent = current_node
+                    if score_g(node_in_list) > g
+                        node_in_list.parent = parent
+                        node_in_list.g = g
+                    end
                 else
-                    score_f(node)
-                    @open_list << node
+                    nbr.parent = current_node
+                    score_f(nbr)
+                    @open_list << nbr
                 end
             end
         end
     end
 
     def in_closed_list?(point)
-        @closed_list.select { |node| node[0] == point }[0]
+        @closed_list.select { |node| node == point }[0]
     end
 
     def in_open_list?(point)
-        @open_list.select { |node| node[0] == point }[0]
+        @open_list.select { |node| node == point }[0]
     end
     
-    # a node is an array containing two Points in the form [point, parent]
-    def score_f(node)
-        point, parent = *node
-        point.f = score_g(node) + score_h(point)
+    def score_f(point)
+        point.f = score_g(point) + score_h(point)
         point.f
     end
 
@@ -65,8 +67,8 @@ class MazeSolver
     # the cost of 14 for a diagonal move approximates the sqrt(2) cost
     # a diagonal move where 2 is the amount of orthoganal moves needed
     # to travel the same distance. 
-    def score_g(node)
-        point, parent = *node
+    def score_g(point)
+        parent = point.parent
         if point.x != parent.x && point.y != parent.y
             point.g = parent.g + 14
         else
@@ -74,15 +76,6 @@ class MazeSolver
         end
         point.g
     end
-
-    def compare_g(node1, node2)
-        old_g = node1[0].g
-        new_g = score_g(node2)
-        return node2 if new_g < old_g
-        node1[0].g = old_g
-        node1
-    end
-
 
     # manhattan method: calculate the total number of horizontal and vertical moves
     # needed to reach the end from the current point, ignoring obstacles.
@@ -94,9 +87,8 @@ class MazeSolver
     end
 
     def test
-        generate_path
-        end_node = in_closed_list?(@end)
-        path = compile_path(end_node)
+        generate_path_data
+        path = compile_path
         path.each do |point|
             point.val = 'X' unless point.val == 'E' || point.val == 'S'
             @maze.update(point)
