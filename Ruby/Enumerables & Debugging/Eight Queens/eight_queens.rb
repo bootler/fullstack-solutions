@@ -4,11 +4,7 @@
 #
 # Part of 'bootler/fullstack-solutions' repository
 # https://github.com/bootler/fullstack-solutions
-
-# "p_rd" where p => plane => [r, f, d] => rank,file,diagonal
-# rd => relative direction => [fw, bk] => forward, backward
-# e.g. "r_fw" = forward along the specified rank 
-# DIRECTIONS = ["r_fw", "r_bk", "f_fw", "f_bk", "d_fw", "d_bk"]
+require ('set')
 
 # generate an initial placement for the queens that approimates a solution as closely
 # as possible in a single step.
@@ -21,6 +17,7 @@
 # e.g. (file, rank): (1, n) > (n, 1) of any such chessboard.
 def place_initial_queens
     board = Array.new(8) { Array.new(8, '[ ]') }
+    # (0...8).each { |i| board[i][i] = '[Q]' }
     rank = 0
     count_4 = 0 
     board.each_index do |file|
@@ -51,10 +48,25 @@ def collect_diagonals
     diagonals
 end
 
+def collect_squares
+    squares = Set[]
+    @board.each_index do |rank|
+        @board[rank].each_index do |file|
+            squares << [rank, file]
+        end
+    end
+    squares
+end
+
+def get_diagonals(pos)
+    DIAGONALS.select do |diag|
+        diag.any? { |square| square == pos }
+    end
+end
 
 def get_queen_positions
     positions = []
-    @boad.each_index do |rank|
+    @board.each_index do |rank|
         @board[rank].each_index do |file|
             positions << [rank, file] if @board[rank][file] == '[Q]'
         end
@@ -62,24 +74,59 @@ def get_queen_positions
     positions
 end
 
-# def get_legal_moves(pos)
-#     rank, file = *pos
-#     bound = @board.length #square board, so board.length == board[0..-1].length
-#     moves = Set[]
-#     DIRECTIONS.each |dir|
-#         case dir
-#         when "r_fw"
-#             (file + 1...bound).each { |file| moves << [rank, file] }
-#         when "r_bk"
-#             (file - 1).downto(0).each { |file| moves << [rank, file] }
-#         when "f_fw"
-#             (rank + 1...bound).each { |rank| moves << [rank, file] }
-#         when "f_bk"
-#             (rank - 1).downto(0).each { |rank| moves << [rank, file] }
-#         when "d_fw"
-#         else
-#         end
+def get_conflicts(pos)
+    rank, file = *pos
+    diags = get_diagonals(pos)
+    queens = get_queen_positions
+    conflicts = 0
 
+    conflicts += queens.select { |queen_pos| queen_pos[0] == rank}.length
+    conflicts += queens.select { |queen_pos| queen_pos[1] == file}.length
+    conflicts += queens.select do |queen_pos|
+        diags.any? do |diag|
+            diag.any? { |square| square == queen_pos }
+        end
+    end.length
+    conflicts
+end
+
+def make_best_move(pos)
+    remove_queen(pos)
+    best = SQUARES.reject { |square| square == pos }
+        .min { |a, b| get_conflicts(a) <=> get_conflicts(b) }
+    add_queen(best)
+    nil
+end
+
+def solve
+    steps = 0
+    until solved? || steps == 10000 do 
+        queens = get_queen_positions
+        queens.each do |pos|
+            make_best_move(pos)
+            steps += 1
+            break if solved?
+        end
+    end
+    pretty_print
+    puts "Solved in #{steps} steps." if solved?
+    puts "Failed to solve. Last attempt shown." unless solved?
+end
+
+def solved?
+    queens = get_queen_positions
+    queens.all? { |queen| get_conflicts(queen) <= 3 }
+end
+
+def add_queen(pos)
+    r, f = *pos
+    @board[r][f] = "[Q]"
+end
+
+def remove_queen(pos)
+    r, f = *pos
+    @board[r][f] = "[ ]"
+end
 
 def pretty_print
     @board.each do |row|
@@ -88,17 +135,9 @@ def pretty_print
     true
 end
 
-def test
-    @board.map! { |row| row.map { |el| el = "[ ]"} }
-    diags = collect_diagonals
-    diags.each do |diag|    
-        diag.each do |pos|
-            r, f = *pos
-            @board[r][f] = '[X]'
-        end
-    end
-    pretty_print
-    true
+if __FILE__ == $PROGRAM_NAME   
+    @board = place_initial_queens
+    SQUARES = collect_squares
+    DIAGONALS = collect_diagonals
+    solve
 end
-
-@board = place_initial_queens
