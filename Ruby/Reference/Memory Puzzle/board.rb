@@ -23,10 +23,6 @@ class Board
             row, col = *pos
             cards_left = card_pool.keys.select { |k| card_pool[k] > 0 }
             face = cards_left[rand(cards_left.length - 1)]
-            print cards_left
-            puts
-            print face
-            sleep(2)
             if face == :!
                 card = Card.new(face, true)
                 @bombs << pos
