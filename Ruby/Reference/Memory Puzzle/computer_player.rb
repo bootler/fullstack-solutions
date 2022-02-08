@@ -9,18 +9,19 @@ class ComputerPlayer
         @size = size
         @known_cards = {}
         @matched_cards = {}
-        @first_guess = true
+        @first_guess = nil
         @next_guess = nil
         @positions = setup(@size)
     end
 
     def prompt
         positions_left = @positions.reject { |pos| @matched_cards[pos] }
-        if @first_guess
-            @first_guess = false
-            return make_first_guess(positions_left)
+        unless @first_guess
+            @first_guess = make_first_guess(positions_left)
+            return @first_guess
         else
-            @first_guess = true
+            positions_left.reject! { |pos| pos == @first_guess }
+            @first_guess = nil
             return make_second_guess(positions_left)
         end
     end
@@ -37,7 +38,7 @@ class ComputerPlayer
     private
 
     def make_first_guess(positions)
-        guess, @next_guess = *find_known_match
+        guess, @next_guess, rest = *find_known_match
         if guess && @next_guess
             return guess
         else
@@ -58,7 +59,7 @@ class ComputerPlayer
     def find_known_match
         known = @known_cards.reject { |k,v| @matched_cards[k] }
         v = known.values.find do |v|
-            known.keys.select { |k| known[k] == v}.length == 2
+            known.keys.select { |k| known[k] == v}.length >= 2
         end
         known.keys.select { |k| known[k] == v}
     end

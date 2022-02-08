@@ -10,8 +10,8 @@ class Board
     attr_accessor :grid
     FACE_VALUES = (:A..:Z).to_a
 
-    def initialize
-        @grid = Array.new(4) { Array.new(4, nil) }
+    def initialize(size)
+        @grid = Array.new(size) { Array.new(size, nil) }
         @size = @grid.length
     end
 
@@ -30,7 +30,6 @@ class Board
     end
 
     def render
-        puts
         range = (0...@size).to_a
         puts "  #{range.join(" ")}"
         range.each do |row|
@@ -68,12 +67,22 @@ class Board
 
     def get_card_pool
         num_cards = (@size**2) / 2
-        cards = {}
+        max_pairs = 2 * deck_amount(num_cards)
+        cards = Hash.new(0)
         num_cards.times do
-            free_cards = FACE_VALUES.reject { |card| cards.keys.include?(card) }
+            free_cards = FACE_VALUES.reject { |card| cards[card] >= max_pairs }
             picked = free_cards[rand(free_cards.length - 1)]
-            cards[picked] = 2
+            cards[picked] += 2
         end
         cards
+    end
+
+    def deck_amount(pairs)
+        deck = FACE_VALUES.length
+        mult = 1
+        until deck * mult > pairs
+            mult += 1
+        end
+        mult
     end
 end
