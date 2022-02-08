@@ -12,6 +12,10 @@ class Card
         @revealed = is_revealed
     end
 
+    def bomb
+        @face_value == :!
+    end
+
     def value
         @revealed ? @face_value : " "
     end

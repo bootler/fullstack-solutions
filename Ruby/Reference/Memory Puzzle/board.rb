@@ -7,11 +7,11 @@
 require_relative 'card'
 
 class Board
-    attr_accessor :grid
     FACE_VALUES = (:A..:Z).to_a
 
     def initialize(size, match_req)
         @grid = Array.new(size) { Array.new(size, nil) }
+        @bombs = []
         @size = @grid.length
         @match_req = match_req
     end
@@ -23,7 +23,16 @@ class Board
             row, col = *pos
             cards_left = card_pool.keys.select { |k| card_pool[k] > 0 }
             face = cards_left[rand(cards_left.length - 1)]
-            card = Card.new(face, false)
+            print cards_left
+            puts
+            print face
+            sleep(2)
+            if face == :!
+                card = Card.new(face, true)
+                @bombs << pos
+            else
+                card = Card.new(face, false)
+            end
             @grid[row][col] = card
             card_pool[face] -= 1
          end
@@ -36,7 +45,6 @@ class Board
         range.each do |row|
             puts "#{row} #{@grid[row].join(" ")}"
         end
-        puts
     end
 
     def hide(guessed_pos)
@@ -47,6 +55,10 @@ class Board
             slot.hide
         end
         nil
+    end
+
+    def hide_bombs
+        @bombs.each { |pos| hide(pos) }
     end
 
     def reveal(guessed_pos)
@@ -60,9 +72,13 @@ class Board
         nil
     end
 
+    def reveal_bombs
+        @bombs.each { |pos| reveal(pos) }
+    end
+
     def won?
         @grid.all? do |row|
-            row.all? { |card| card.revealed }
+            row.all? { |card| card.bomb || card.revealed }
         end
     end
 
@@ -80,11 +96,12 @@ class Board
         num_cards = (@size**2) / @match_req
         max_pairs = @match_req * deck_mult(num_cards)
         cards = Hash.new(0)
-        num_cards.times do
+        (num_cards - 1).times do
             free_cards = FACE_VALUES.reject { |card| cards[card] >= max_pairs }
             picked = free_cards[rand(free_cards.length - 1)]
             cards[picked] += @match_req
         end
+        cards[:!] += @match_req #add one set of bombs
         cards
     end
 

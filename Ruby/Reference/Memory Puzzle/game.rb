@@ -11,27 +11,39 @@ require_relative 'computer_player'
 
 class Game
     def initialize(size, match_req)
-        @guesses = []
-        @match_req = match_req
-        @prev_guess = nil
         @board = Board.new(size, match_req)
         @board.populate
-        @player = ComputerPlayer.new(size, match_req)
+        @bombed = false
+        @guesses = []
+        @match_req = match_req
+        @player = HumanPlayer.new(size, match_req)
+    end
+
+    def begin
+        show
+        @board.hide_bombs
+        puts "Be careful not to uncover these bombs by mistake!"
+        sleep(5)
+        play
     end
 
     def play
-        until @board.won?
+        until @board.won? || @bombed
             show
             make_guess(@player.prompt)
         end
-        show
-        puts "You win!"
+        notify_result
     end
 
     def make_guess(pos)
         @guesses << pos
-        val = @board.reveal(pos).face_value
-        @player.receive_revealed_card(pos, val)
+        card = @board.reveal(pos)
+        if card.bomb
+            @bombed = true
+            return
+        end
+
+        @player.receive_revealed_card(pos, card.face_value)
         if is_match?(@guesses)
             if @guesses.length % @match_req == 0
                 @player.receive_match(@guesses)
@@ -50,6 +62,16 @@ class Game
         cards.all? { |card| card == cards[0] }
     end
     
+    def notify_result
+        @board.reveal_bombs
+        show
+        if @bombed
+            puts "You uncovered a bomb! Better luck next time."
+        else
+            puts "You win!"
+        end
+    end
+
     def show
         system("clear")
         @board.render
@@ -75,5 +97,5 @@ if __FILE__ == $PROGRAM_NAME
             size += 1
         end
     end
-    Game.new(size, match_x).play
+    Game.new(size, match_x).begin
 end
