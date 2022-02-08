@@ -10,9 +10,10 @@ class Board
     attr_accessor :grid
     FACE_VALUES = (:A..:Z).to_a
 
-    def initialize(size)
+    def initialize(size, match_req)
         @grid = Array.new(size) { Array.new(size, nil) }
         @size = @grid.length
+        @match_req = match_req
     end
 
     def populate
@@ -36,6 +37,16 @@ class Board
             puts "#{row} #{@grid[row].join(" ")}"
         end
         puts
+    end
+
+    def hide(guessed_pos)
+        return nil unless guessed_pos
+        row, col = *guessed_pos
+        slot = @grid[row][col]
+        if slot.is_a?(Card)
+            slot.hide
+        end
+        nil
     end
 
     def reveal(guessed_pos)
@@ -66,18 +77,18 @@ class Board
     end
 
     def get_card_pool
-        num_cards = (@size**2) / 2
-        max_pairs = 2 * deck_amount(num_cards)
+        num_cards = (@size**2) / @match_req
+        max_pairs = @match_req * deck_mult(num_cards)
         cards = Hash.new(0)
         num_cards.times do
             free_cards = FACE_VALUES.reject { |card| cards[card] >= max_pairs }
             picked = free_cards[rand(free_cards.length - 1)]
-            cards[picked] += 2
+            cards[picked] += @match_req
         end
         cards
     end
 
-    def deck_amount(pairs)
+    def deck_mult(pairs)
         deck = FACE_VALUES.length
         mult = 1
         until deck * mult > pairs

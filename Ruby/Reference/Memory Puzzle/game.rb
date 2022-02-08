@@ -10,11 +10,13 @@ require_relative 'human_player'
 require_relative 'computer_player'
 
 class Game
-    def initialize(size)
+    def initialize(size, match_req)
+        @guesses = []
+        @match_req = match_req
         @prev_guess = nil
-        @board = Board.new(size)
+        @board = Board.new(size, match_req)
         @board.populate
-        @player = ComputerPlayer.new(size)
+        @player = ComputerPlayer.new(size, match_req)
     end
 
     def play
@@ -27,27 +29,25 @@ class Game
     end
 
     def make_guess(pos)
-        guess, prev = @board.reveal(pos), @board.reveal(@prev_guess)
-        @player.receive_revealed_card(pos, guess.face_value)
-        if is_match?(guess, prev)
-            @player.receive_match(pos, @prev_guess)
-            @prev_guess = nil
-            update(true)
-        else
-            if prev
-                update(false)
-                guess.hide
-                prev.hide
-                @prev_guess = nil
-            else
-                @prev_guess = pos
+        @guesses << pos
+        val = @board.reveal(pos).face_value
+        @player.receive_revealed_card(pos, val)
+        if is_match?(@guesses)
+            if @guesses.length % @match_req == 0
+                @player.receive_match(@guesses)
+                @guesses = []
+                update(true)
             end
+        else
+            update(false)
+            @guesses.each { |pos| @board.hide(pos) }
+            @guesses = []
         end
     end
 
-    def is_match?(guess, prev)
-        return false unless guess && prev
-        guess == prev
+    def is_match?(guesses)
+        cards = guesses.map { |guess| @board.reveal(guess) }
+        cards.all? { |card| card == cards[0] }
     end
     
     def show
@@ -68,9 +68,12 @@ end
 
 if __FILE__ == $PROGRAM_NAME
     size = ARGV[0].to_i > 0 ? ARGV[0].to_i : 4
-    unless size % 2 == 0
+    match_x = ARGV[1].to_i > 1 ? ARGV[1].to_i : 2
+    unless size % match_x == 0
         puts "Board size adjusted to fit an even number of matches"
-        size += 1
+        until size % match_x == 0
+            size += 1
+        end
     end
-    Game.new(size).play
+    Game.new(size, match_x).play
 end

@@ -5,7 +5,7 @@
 # Part of 'bootler/fullstack-solutions' repository
 # https://github.com/bootler/fullstack-solutions
 class HumanPlayer
-    def initialize(size)
+    def initialize(size, match_req)
     end
     
     def prompt
@@ -16,6 +16,6 @@ class HumanPlayer
     def receive_revealed_card(pos, value)
     end
 
-    def receive_match(pos1,pos2)
+    def receive_match(positions)
     end
 end
