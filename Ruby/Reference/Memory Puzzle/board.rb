@@ -40,6 +40,7 @@ class Board
     end
 
     def reveal(guessed_pos)
+        return nil unless guessed_pos
         row, col = *guessed_pos
         slot = @grid[row][col]
         if slot.is_a?(Card)
@@ -56,12 +57,6 @@ class Board
     end
 
     private
-
-    def full_grid?
-        grid.none? do |row|
-            row.none? { |col| col == nil }
-        end
-    end
 
     def get_positions
         positions = []

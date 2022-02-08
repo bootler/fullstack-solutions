@@ -7,13 +7,14 @@
 require_relative 'card'
 require_relative 'board'
 require_relative 'human_player'
+require_relative 'computer_player'
 
 class Game
     def initialize
         @prev_guess = nil
         @board = Board.new
         @board.populate
-        @player = HumanPlayer.new
+        @player = ComputerPlayer.new(4)
     end
 
     def play
@@ -22,23 +23,32 @@ class Game
             @board.render
             make_guess(@player.prompt)
         end
+        @board.render
     end
 
     def make_guess(pos)
-        guess, prev = @board.reveal(pos), @prev_guess
+        guess, prev = @board.reveal(pos), @board.reveal(@prev_guess)
         @player.receive_revealed_card(pos, guess.face_value)
-        if prev.is_a?(Card)
-            unless guess == prev
+        if is_match?(guess, prev)
+            @player.receive_match(pos, @prev_guess)
+            @prev_guess = nil
+        else
+            if prev
                 system("clear")
                 @board.render
                 sleep(1)
                 guess.hide
                 prev.hide
+                @prev_guess = nil
+            else
+                @prev_guess = pos
             end
-            @prev_guess = nil
-        else
-            @prev_guess = guess
         end
+    end
+
+    def is_match?(guess, prev)
+        return false unless guess && prev
+        guess == prev
     end
             
     def show
