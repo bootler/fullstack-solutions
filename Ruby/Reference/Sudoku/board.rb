@@ -7,10 +7,12 @@
 require_relative 'tile'
 
 class Board
+    attr_reader :grid, :rows, :cols, :cells
+
     def self.from_file(filename)
         grid = []
         File.foreach(filename) { |line| grid << line.chomp.split("") }
-        grid.map do |row|
+        grid.map! do |row|
             row.map do |num|
                 num = num.to_i
                 if num > 0
@@ -20,6 +22,7 @@ class Board
                 end
             end
         end
+        Board.new(grid)
     end
     
     def initialize(grid)

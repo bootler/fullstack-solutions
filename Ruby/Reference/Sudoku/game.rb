@@ -7,9 +7,8 @@
 require_relative 'board'
 
 class Game
-    def initialize(filename)
-        from_file = Board.from_file(filename)
-        @board = Board.new(from_file)
+    def initialize(filename, solver=false)
+        @board = Board.from_file(filename)
     end
 
     def prompt
@@ -33,6 +32,6 @@ class Game
     end
 end
 
-IF __FILE__ == $PROGRAM_NAME
-    Game.new('./static/sudoku1.txt').play
+if __FILE__ == $PROGRAM_NAME
+    Game.new('./static/sudoku1_solved.txt').play
 end
