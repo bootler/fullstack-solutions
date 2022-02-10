@@ -7,7 +7,7 @@
 require_relative 'board'
 
 class Game
-    def initialize(filename, solver=false)
+    def initialize(filename)
         @board = Board.from_file(filename)
     end
 
