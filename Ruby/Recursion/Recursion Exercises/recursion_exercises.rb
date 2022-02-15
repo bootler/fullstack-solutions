@@ -196,5 +196,126 @@ p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
 p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
 p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
 puts
+
+# Problem 5:
+# Implement a method merge_sort that sorts an Array.
+def merge_sort(arr)
+    return arr if arr.length <= 1
+    arr.length.even? ? len = arr.length / 2 : len = (arr.length + 1) / 2
+
+     left = merge_sort(arr[0...len])
+     right = merge_sort(arr[len..-1])
+
+    merge(left, right)
+end
+
+def merge(left, right)
+    arr = []
+    until left.empty? || right.empty?
+        if left[0] <= right[0]
+            arr << left[0]
+            left = left[1..-1]
+        else
+            arr << right[0]
+            right = right[1..-1]
+        end
+    end
+
+    until left.empty? do
+        arr << left[0]
+        left = left[1..-1]
+    end
+
+    until right.empty? do
+        arr << right[0]
+        right = right[1..-1]
+    end
+    arr
+end
+
+# Test cases:
+p merge_sort([2,3,11,4,5,66,1,9])
+p merge_sort([9,4,3,7,1,6,2,5])
+puts
+
+# Problem 6:
+# Write a method subsets that will return all subsets of an array.
+def subsets(arr)
+    return [[]] if arr.empty?
+    subs = subsets(arr[0...-1])
+    (0...subs.length).each { |i| subs << subs[i] + [arr[-1]] }
+    subs
+end
+
+# Test cases:
+p subsets([1, 2, 3])
+p subsets([1, 2, 3, 4])
+puts
+
+# Problem 7:
+# Write a recursive method permutations(array) that calculates all the permutations 
+# of the given array. For an array of length n there are n! different permutations.
+def permutations(arr)
+    return [arr] if arr.length <= 1
+    perms = []
+    (0...arr.length).each do |i|
+        sub_perms = permutations(arr[1..-1])
+        sub_perms.each { |el| perms << [arr[0]] + el }
+        arr.rotate!
+    end
+    perms
+end
+
+p permutations([1,2,3])
+p permutations([1,2,3,4]).length # => 24
+puts
+
+# Problem 8:
+# The following problem 'Make Change' references an archived page
+# from the following link: http://web.archive.org/web/20130215052843/http://rubyquiz.com/quiz154.html
+# Full details of the problem can be found there.
+# In a nutshell, the function takes an amount in cents and an optional array of coin
+# denominations and returns an array of those coin denominations that consititute 
+# exact change in the amount given
+# e.g. make_change(39, [25,10,5,1]) => [25, 10, 1, 1, 1, 1]
+#
+# greedy_make_change is also called for. It is suboptimal.
+def greedy_make_change(amt, coins=[25,10,5,1])
+    return [] if amt <= 0
+    change = []
+    coins.each do |coin|
+        if amt - coin >= 0
+            change << coin
+            change += greedy_make_change(amt - coin)
+            return change
+        end
+    end
+end
+
+p greedy_make_change(39)
+puts
+
+# This implementation calls for finding the optimal amount of change
+# e.g. fewest amount of coins used
+def make_change(amt, coins=[25, 10, 5, 1])
+    return [] if amt <= 0
+    best = []
+    coins.each.with_index do |coin, i|
+        next if amt - coin < 0
+        sub_change = make_change(amt - coin, coins[i..-1])
+        if amt - sub_change.sum == coin
+            best = [coin] + sub_change if best.empty? || sub_change.length + 1 < best.length
+        end
+    end
+    best
+end
+
+p make_change(24, [10, 7, 1])
+puts
         
+
+
+
+
+
 
