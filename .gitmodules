@@ -1,0 +1,3 @@
+[submodule "Ruby/Git/Screwedoku/screwedoku"]
+	path = Ruby/Git/Screwedoku/screwedoku
+	url = https://github.com/bootler/screwedoku
