@@ -5,10 +5,12 @@
 # Part of 'bootler/fullstack-solutions' repository
 # https://github.com/bootler/fullstack-solutions
 require 'remedy'
+require 'yaml'
 require_relative 'board'
 
 class Minesweeper
     include Remedy
+    attr_reader :board
     INPUT = Interaction.new
     
     def initialize
@@ -17,8 +19,7 @@ class Minesweeper
     end
 
     def play
-        @board.update_cursor(@cursor_pos)
-        @board.render
+        setup
         INPUT.loop do |key|
             case key.to_s
             when "left"
@@ -33,22 +34,32 @@ class Minesweeper
                 flag(@cursor_pos)
             when "control_m" # enter key
                 reveal(@cursor_pos)
+            when "s"
+                save
+                puts "Saved successfully!"
+                sleep(0.5)
             when "q"
-                INPUT.quit!
+                system("clear")
+                ANSI.cursor.show!
+                exit
             else
                 puts "Command not recognized: #{key.to_s}"
-                gets
             end
             @board.render
             break if @board.won? || @board.lost?
         end
-        @board.reveal_bombs if @board.lost?
-        @board.render
+        if @board.lost?
+            @board.reveal_bombs
+            @board.render
+            puts "Sorry, you lost!"
+        else
+            puts "Congrats, you win!"
+        end
         ANSI.cursor.show!
     end
 
     def move(direction)
-        cursor = @board.cursor_pos.map { |item| item }
+        cursor = @board.cursor_pos.dup
         case direction
         when :left
             cursor[0] -= 1
@@ -71,9 +82,30 @@ class Minesweeper
     def reveal(pos)
         @board.reveal(pos)
     end
+
+    def setup
+        @board.update_cursor(@cursor_pos)
+        @board.render
+    end
+
+    def save
+        n = Dir.entries('saved_games').length - 1
+        f = File.open("saved_games/save#{n}.yml","w+")
+        f.write(self.to_yaml)
+    end
 end
 
 if __FILE__ == $PROGRAM_NAME
-    m = Minesweeper.new
+    if ARGV[0]
+        begin
+            m = YAML.load_file(ARGV[0])
+        rescue
+            puts "File not found! Launching new game.".red
+            sleep(1.25)
+            m = Minesweeper.new
+        end
+    else
+        m = Minesweeper.new
+    end
     m.play
 end

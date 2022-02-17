@@ -1,0 +1,494 @@
+--- !ruby/object:Minesweeper
+board: !ruby/object:Board
+  size: 9
+  grid:
+  - - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: true
+      flagged: false
+      revealed: true
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 1
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+  - - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 1
+    - !ruby/object:Tile
+      is_bomb: true
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: true
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+  - - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 1
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 2
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: true
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+  - - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 1
+    - !ruby/object:Tile
+      is_bomb: true
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+  - - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 2
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+  - - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 1
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 1
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 1
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: true
+      value: 1
+    - !ruby/object:Tile
+      is_bomb: true
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: true
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+  - - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: true
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+  - - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+  - - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: true
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: true
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+    - !ruby/object:Tile
+      is_bomb: false
+      is_cursor: false
+      flagged: false
+      revealed: false
+      value: 
+  cursor_pos: &1
+  - 0
+  - 0
+cursor_pos: *1

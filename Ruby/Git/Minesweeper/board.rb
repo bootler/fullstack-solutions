@@ -11,7 +11,11 @@ class Board
     include Remedy
     attr_reader :cursor_pos
     SCREEN = Viewport.new
-    HEADER = Header.new(["The header goes here"])
+    HEADER = Header.new(["Welcome to Minesweeper!",
+    "Use arrow keys to select a tile",
+    "Press F to flag/unflag a tile, or Enter to reveal it.",
+    "Press S to save the game"
+    "Press Q to quit."])
     
     def initialize(size)
         @size = size
@@ -47,12 +51,7 @@ class Board
             end
             return
         end
-        count = 0
-        nbrs.each do |nbr|
-            n_x, n_y = *nbr
-            nbr_tile = @grid[n_y][n_x]
-            count += 1 if nbr_tile.is_bomb
-        end
+        count = count_nbr_bombs(nbrs)
         tile.value = count if count > 0
     end
 
@@ -74,8 +73,6 @@ class Board
         SCREEN.draw(HEADER)
         puts
         @grid.each { |row| puts "    #{row.join("")}" }
-        puts
-        puts "Await user input: "
     end
 
     def won?
@@ -98,6 +95,17 @@ class Board
             @grid[y][x]
         end.none? { |tile| tile.is_bomb }
     end
+
+    def count_nbr_bombs(nbrs)
+        count = 0
+        nbrs.each do |nbr|
+            x, y = *nbr
+            nbr_tile = @grid[y][x]
+            count += 1 if nbr_tile.is_bomb
+        end
+        count
+    end
+
 
     def get_neighbors(pos)
         x, y = *pos

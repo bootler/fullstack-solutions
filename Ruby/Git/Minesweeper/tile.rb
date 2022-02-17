@@ -29,6 +29,8 @@ class Tile
     def reveal
         if @flagged
             puts "Square is flagged! Unflag first."
+            puts "(press Enter to continue)"
+            gets
         else
             @revealed = true
         end
@@ -51,9 +53,5 @@ class Tile
         else
             return "+".white.on_light_black
         end
-    end
-
-    def ==(tile)
-        @value == tile.value
     end
 end
