@@ -12,6 +12,7 @@ class Minesweeper
     include Remedy
     attr_reader :board
     INPUT = Interaction.new
+    START_TIME = Time.now
     
     def initialize
         @board = Board.new(9)
@@ -53,7 +54,7 @@ class Minesweeper
             @board.render
             puts "Sorry, you lost!"
         else
-            puts "Congrats, you win!"
+            puts "Congrats, you have won in: #{Integer(Time.now - START_TIME)} seconds"
         end
         ANSI.cursor.show!
     end

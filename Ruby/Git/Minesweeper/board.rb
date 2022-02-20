@@ -14,12 +14,13 @@ class Board
     HEADER = Header.new(["Welcome to Minesweeper!",
     "Use arrow keys to select a tile",
     "Press F to flag/unflag a tile, or Enter to reveal it.",
-    "Press S to save the game"
+    "Press S to save the game",
     "Press Q to quit."])
     
     def initialize(size)
         @size = size
-        @grid = create_grid(@size)
+        @grid = create_grid(size)
+        seed_bombs(@grid, @size)
         @cursor_pos = [0, 0]
     end
 
@@ -28,8 +29,6 @@ class Board
         grid.map! do |row|
             row.map! { |tile| tile = Tile.new }
         end
-
-        size.times { grid[rand(size)][rand(size)].set_bomb }
         grid
     end
 
@@ -127,4 +126,16 @@ class Board
         x, y = *@cursor_pos
         @grid[y][x].is_cursor = false
     end
+
+    def seed_bombs(grid, size)
+        count_bombs = 0
+        until count_bombs == size
+            bomb_tile = grid[rand(size)][rand(size)]
+            unless bomb_tile.is_bomb
+                bomb_tile.set_bomb
+                count_bombs += 1
+            end
+        end
+    end
+
 end
