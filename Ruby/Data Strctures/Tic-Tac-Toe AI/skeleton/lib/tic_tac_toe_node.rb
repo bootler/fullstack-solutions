@@ -1,3 +1,9 @@
+# Tic Tac Toe AI - From App Academy Open Full Stack Course
+# https://open.appacademy.io/learn/full-stack-online/ruby/tic-tac-toe-ai
+# tic_tac_toe_node.rb by: Alex Boutilier
+#
+# Part of 'bootler/fullstack-solutions' repository
+# https://github.com/bootler/fullstack-solutions
 require_relative 'tic_tac_toe'
 
 class TicTacToeNode
@@ -10,7 +16,9 @@ class TicTacToeNode
   end
 
   def losing_node?(evaluator)
-    return true if @board.won? && @board.winner != evaluator
+    if @board.over?
+      return @board.won? && @board.winner != evaluator
+    end
     if evaluator == @next_mover_mark
       children.all? { |kid| kid.losing_node?(evaluator) }
     else
