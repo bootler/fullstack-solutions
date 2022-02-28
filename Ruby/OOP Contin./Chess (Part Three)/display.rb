@@ -9,13 +9,14 @@ require_relative 'board'
 require_relative 'cursor'
 
 class Display
+    attr_reader :cursor
+
     def initialize(board)
         @board = board
         @cursor = Cursor.new([0,0], board)
     end
 
     def render
-        system("clear")
         display = generate_chessboard
         y, x = *@cursor.cursor_pos
         if @cursor.selected

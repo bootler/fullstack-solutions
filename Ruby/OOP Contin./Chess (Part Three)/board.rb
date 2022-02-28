@@ -51,12 +51,12 @@ class Board
     end
         
     def move_piece(color, start_pos, end_pos)
-        raise "No piece to move at #{start_pos}" unless self[start_pos]
+        raise "No piece was seleced to move here." if self[start_pos].is_a?(NullPiece)
         raise "Target square is not on the board" unless valid_square?(end_pos) 
         raise "You may only move a piece of your own color!" unless self[start_pos].color == color
         unless self[start_pos].valid_moves.include?(end_pos)
             raise "Illegal move! Either your piece doesn't move that way, " +
-                "or you're leaving yourself in check on your opponent's turn."
+                "or you're leaving yourself in check on the next turn."
         end
         self[end_pos] = self[start_pos]
         self[start_pos] = @null_piece
