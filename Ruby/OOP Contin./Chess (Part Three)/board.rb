@@ -31,6 +31,21 @@ class Board
         @rows[y][x] = val
     end
 
+    def dup
+        dup_board = Board.new
+        @rows.each.with_index do |row, i|
+            row.each.with_index do |square, j|
+                piece = @rows[i][j]
+                if piece == @null_piece
+                    dup_board[[i,j]] = @null_piece
+                else
+                    dup_board[[i,j]] = piece.class.new(piece.color, dup_board, piece.pos)
+                end
+            end
+        end
+        dup_board
+    end
+
     def empty?(pos)
         self[pos].empty?
     end
@@ -39,6 +54,17 @@ class Board
         raise "No piece to move at #{start_pos}" unless self[start_pos]
         raise "Target square is not on the board" unless valid_square?(end_pos) 
         raise "You may only move a piece of your own color!" unless self[start_pos].color == color
+        unless self[start_pos].valid_moves.include?(end_pos)
+            raise "Illegal move! Either your piece doesn't move that way, " +
+                "or you're leaving yourself in check on your opponent's turn."
+        end
+        self[end_pos] = self[start_pos]
+        self[start_pos] = @null_piece
+        self[end_pos].pos = end_pos
+        self[end_pos]
+    end
+
+    def move_piece!(color, start_pos, end_pos)
         self[end_pos] = self[start_pos]
         self[start_pos] = @null_piece
         self[end_pos].pos = end_pos
@@ -58,8 +84,9 @@ class Board
     end
 
     def checkmate?(color)
+        return false unless in_check?(color)
         my_pieces = pieces.select { |piece| piece.color == color }
-        my_pieces.any?(&:valid_moves)
+        my_pieces.all?(&:no_valid_moves?)
     end
 
     private

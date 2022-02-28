@@ -16,7 +16,7 @@ class Display
 
     def render
         system("clear")
-        display = assign_checkerboard_pattern
+        display = generate_chessboard
         y, x = *@cursor.cursor_pos
         if @cursor.selected
             display[y][x] = display[y][x].on_green
@@ -24,7 +24,7 @@ class Display
             display[y][x] = display[y][x].on_red
         end
         display.each do |row|
-            row.each { |sq| print sq }
+            row.each { |square| print square }
             puts
         end
     end
@@ -42,12 +42,12 @@ class Display
                     s_p = []
                 end
             end
-            if @board.in_check?(:white)
-                puts "White king now in check"
+            if @board.checkmate?(:white)
+                puts "White king now in mate"
                 gets
             end
-            if @board.in_check?(:black)
-                puts "Black king now in check"
+            if @board.checkmate?(:black)
+                puts "Black king now in mate"
                 gets
             end
         end
@@ -55,7 +55,7 @@ class Display
 
     private
 
-    def assign_checkerboard_pattern
+    def generate_chessboard
         toggle = true # toggle for alternating square background to make a checkerboard pattern
         disp_board = @board.rows.map { |row| row.map(&:to_s) }
         disp_board.each do |row|
@@ -81,5 +81,7 @@ end
 
 # debug only, will be removed
 if __FILE__ == $PROGRAM_NAME
-    Display.new(Board.new).test_play
+    b = Board.new
+    d = b.dup
+    Display.new(d).test_play
 end
