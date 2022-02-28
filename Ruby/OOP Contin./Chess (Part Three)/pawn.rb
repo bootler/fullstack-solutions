@@ -32,7 +32,7 @@ class Pawn < Piece
         steps = []
         steps << [y + forward_dir, x]
         steps << [y + (forward_dir * 2), x] if at_start_row?
-        steps
+        steps.select { |step| board[step].empty? }
     end
 
     def side_attacks
