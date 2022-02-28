@@ -41,11 +41,25 @@ class Board
         raise "You may only move a piece of your own color!" unless self[start_pos].color == color
         self[end_pos] = self[start_pos]
         self[start_pos] = @null_piece
+        self[end_pos].pos = end_pos
         self[end_pos]
     end
 
     def valid_square?(pos)
         pos.all? { |coord| coord.between?(0, @rows.length - 1) }
+    end
+
+    def in_check?(color)
+        my_king = pieces.find { |piece| piece.is_a?(King) && piece.color == color}
+        enemies = pieces.select { |piece| piece.color != color }
+        enemies.any? do |piece|
+            piece.moves.include?(my_king.pos)
+        end
+    end
+
+    def checkmate?(color)
+        my_pieces = pieces.select { |piece| piece.color == color }
+        my_pieces.any?(&:valid_moves)
     end
 
     private
@@ -87,5 +101,9 @@ class Board
     def pawn_row(color)
         color == :white ? y = 6 : y = 1
         Array.new(8) { |i| Pawn.new(color, self, [y, i]) }
+    end
+
+    def pieces
+        @rows.flatten.reject(&:empty?)
     end
 end

@@ -30,9 +30,26 @@ class Display
     end
 
     def test_play #debug only, will be removed
+        s_p = []
         loop do
             render
-            @cursor.get_input
+            c = @cursor.get_input
+            if c
+                if @cursor.selected
+                    s_p = c
+                else
+                    @board.move_piece(@board[s_p].color, s_p, c)
+                    s_p = []
+                end
+            end
+            if @board.in_check?(:white)
+                puts "White king now in check"
+                gets
+            end
+            if @board.in_check?(:black)
+                puts "Black king now in check"
+                gets
+            end
         end
     end
 
@@ -62,6 +79,7 @@ class Display
     end
 end
 
+# debug only, will be removed
 if __FILE__ == $PROGRAM_NAME
     Display.new(Board.new).test_play
 end

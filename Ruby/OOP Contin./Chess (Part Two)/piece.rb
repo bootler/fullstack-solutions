@@ -25,7 +25,7 @@ class Piece
     end
 
     def pos=(val)
-        @board.move_piece(@pos, val)
+        @pos = val
     end
 
     def symbol

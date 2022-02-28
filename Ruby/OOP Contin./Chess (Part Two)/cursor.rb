@@ -99,6 +99,7 @@ class Cursor
       exit(0)
     else
     end
+    nil
   end
 
   def update_pos(diff)

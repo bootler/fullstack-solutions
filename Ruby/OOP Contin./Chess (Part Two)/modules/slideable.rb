@@ -36,8 +36,6 @@ module Slideable
             y += dy
             x += dx
             move = [y, x]
-            print move
-            gets
             break unless board.valid_square?(move)
             if board[move].empty?
                 moves << move
