@@ -45,5 +45,7 @@ class Game
 end
 
 if __FILE__ == $PROGRAM_NAME
+    p String.color_samples
+    gets
     Game.new.play
 end
